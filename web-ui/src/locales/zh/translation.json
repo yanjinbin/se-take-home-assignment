@@ -1,0 +1,25 @@
+{
+	"add": "添加",
+	"changeLanguage": "切换语言",
+	"dashboard": "头版",
+	"delete": "删除",
+	"http": {
+		"401": "未授权",
+		"403": "禁止访问",
+		"404": "未找到",
+		"429": "操作次数过的,稍后再试",
+		"4xx": "错误",
+		"5xx": "内部服务器错误",
+		"error": "错误",
+		"forbidden": "禁止访问",
+		"internalServerError": "内部服务器错误",
+		"notFound": "未找到",
+		"unauthorized": "未授权"
+	},
+	"login": "登录",
+	"password": "密码",
+	"search": "查询",
+	"update": "更新",
+	"username": "用户名",
+	"welcome": "欢迎使用react国际化"
+}

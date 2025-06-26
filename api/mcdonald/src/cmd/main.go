@@ -47,6 +47,7 @@ func main() {
 	}
 	router.Init(cfg)
 	r := gin.New()
+	r.Use(Cors())
 	v1Router := r.Group(BaseURL).Group("/v1")
 	router.RegisterRouter(v1Router)
 	router.RegisterHealthRouter(r)
@@ -74,4 +75,31 @@ func main() {
 	}
 	log.Print("[SERVER] [Info] Exiting")
 	defer log.Print("[SERVER] [Info] Closed")
+}
+
+func Cors() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		method := c.Request.Method
+		origin := c.Request.Header.Get("Origin") // 请求头部
+
+		if origin != "" {
+			c.Header("Access-Control-Allow-Origin", "*")
+			c.Header("Access-Control-Allow-Methods", "OPTIONS, POST, GET, PUT, DELETE, PATCH")
+			c.Header(
+				"Access-Control-Allow-Headers",
+				"Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site, Origin, X-Requested-With, Content-Type, Accept-Language, Connection, User-Agent, Referer, Accept, Authorization",
+			)
+			// 响应标头 Access-Control-Expose-Headers 允许服务器指示那些响应标头可以暴露给浏览器中运行的脚本，以响应跨源请求。
+			// https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Access-Control-Expose-Headers
+			c.Header(
+				"Access-Control-Expose-Headers",
+				"Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Cache-Control, Content-Language, Content-Type, Authorization",
+			)
+			c.Header("Access-Control-Allow-Credentials", "true")
+			c.Header("Access-Control-Max-Age", "2592000")
+		}
+		if method == "OPTIONS" {
+			c.AbortWithStatus(http.StatusNoContent)
+		}
+	}
 }

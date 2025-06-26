@@ -1,0 +1,43 @@
+/* utilities.css */
+@layer utilities {
+	.scrollbar-hide {
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
+	}
+
+	.text-balance {
+		text-wrap: balance;
+	}
+
+	.debug-border {
+		border: 1px solid red;
+	}
+
+	.debug-border-red {
+		border: 1px solid red;
+	}
+
+	.debug-border-dashed {
+		border: 1px dashed red;
+	}
+
+	.debug-border-blue {
+		border: 1px solid blue;
+	}
+
+	.debug-border-green {
+		border: 1px solid green;
+	}
+
+	.debug-border-purple {
+		border: 1px solid purple;
+	}
+
+	.debug-border-orange {
+		border: 1px solid orange;
+	}
+}

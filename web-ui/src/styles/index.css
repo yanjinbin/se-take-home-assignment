@@ -1,0 +1,29 @@
+/* 1. Tailwind 核心导入，必须最先 */
+@import "tailwindcss";
+
+/* 2. 第三方 Tailwind 插件，例如动画 */
+@import "tw-animate-css";
+
+/* 4. CSS Reset - 清除浏览器默认样式 */
+@import "./reset.css";
+
+/* 5. 主题变量 tokens */
+@import "./tokens.css";
+
+/* 6. 主题切换变量 theme（暗黑模式覆盖变量） */
+@import "./theme.css";
+
+/* 7. 字体相关样式 */
+@import "./fonts.css";
+
+/* 8. 基础全局样式 base */
+@import "./base.css";
+
+/* 9. 组件样式 components */
+@import "./components.css";
+
+/* 10. 工具类 utilities */
+@import "./utilities.css";
+
+/* debug 用 breakpoint https://github.com/jorenvanhee/tailwindcss-debug-screens */
+@plugin "tailwindcss-debug-screens";

@@ -1,0 +1,25 @@
+{
+	"add": "Hinzufügen",
+	"changeLanguage": "Sprache wechseln",
+	"dashboard": "Armaturenbrett",
+	"delete": "Löschen",
+	"http": {
+		"401": "Nicht autorisiert",
+		"403": "Zugriff verweigert",
+		"404": "Nicht gefunden",
+		"429": "Zu viele Anfragen, bitte später versuchen",
+		"4xx": "Clientfehler",
+		"5xx": "Serverfehler",
+		"error": "Fehler",
+		"forbidden": "Zugriff verweigert",
+		"internalServerError": "Interner Serverfehler",
+		"notFound": "Nicht gefunden",
+		"unauthorized": "Nicht autorisiert"
+	},
+	"login": "Anmelden",
+	"password": "Passwort",
+	"search": "Suchen",
+	"update": "Aktualisieren",
+	"username": "Benutzername",
+	"welcome": "Willkommen bei React-Internationalisierung"
+}

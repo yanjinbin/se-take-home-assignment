@@ -1,0 +1,25 @@
+{
+	"add": "Add",
+	"changeLanguage": "Change Language",
+	"dashboard": "dashboard",
+	"delete": "Delete",
+	"http": {
+		"401": "Unauthorized",
+		"403": "Access Forbidden",
+		"404": "Not Found",
+		"429": "Too many requests, please try again later",
+		"4xx": "Client Error",
+		"5xx": "Server Error",
+		"error": "Error",
+		"forbidden": "Access Forbidden",
+		"internalServerError": "Internal Server Error",
+		"notFound": "Not Found",
+		"unauthorized": "Unauthorized"
+	},
+	"login": "Login",
+	"password": "Password",
+	"search": "Search",
+	"update": "Update",
+	"username": "Username",
+	"welcome": "Welcome to React i18n"
+}
