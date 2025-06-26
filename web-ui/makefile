@@ -2,18 +2,18 @@ namespace=ReactActionBiolerplate
 Version=`git describe --tag  --abbrev=0`
 build_time=`date +%FT%T%z`
 commit_hash=`git rev-parse --short HEAD`
-PORT = 5173  # 要杀死进程的端口号
-PID = $(shell lsof -t -i :$(PORT))  # 获取占用指定端口的进程ID
+PORT = 5173
+PID = $(shell lsof -t -i :$(PORT))
 
 
-#biome暂不支持 cssinjs
+#biome 暂不支持 cssinjs
 format-cssinjs:
 	styled-formatter "src/**/**.jsx" --fix
 format-json:
 	json-sort src/**/*.json --insert-final-newline true --autofix
 
-run:
-	vite . --port $(PORT)
+run-web:
+	pnpm run dev
 
 .PHONY: docker-run
 runAtDocker:
@@ -39,7 +39,7 @@ stop:
 	fi
 
 
-# 基础cli
+# base cli
 formatSetup:
 	pnpm add -g @tillig/json-sort-cli
 	pnpm add  -g styled-formatter

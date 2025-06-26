@@ -5,9 +5,8 @@ import (
 	"strconv"
 	"time"
 
-	"mcdonald/src/model"
-
 	"github.com/gin-gonic/gin"
+	"mcdonald/src/model"
 )
 
 // AddBot creates and registers a new bot
@@ -95,6 +94,15 @@ func BotList(c *gin.Context) {
 			Code:    1000,
 			Message: "bot list service error",
 		})
+	}
+	if list == nil || len(list) == 0 {
+		c.JSON(http.StatusOK, model.Response{
+			Code:    0,
+			Message: "no bots found",
+			Data:    []model.Bot{},
+		})
+
+		return
 	}
 
 	c.JSON(http.StatusOK, model.Response{

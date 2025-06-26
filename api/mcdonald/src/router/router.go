@@ -4,10 +4,9 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/gin-gonic/gin"
 	"mcdonald/src/conf"
 	"mcdonald/src/service"
-
-	"github.com/gin-gonic/gin"
 )
 
 var svc *service.Service
@@ -30,21 +29,6 @@ func RegisterRouter(g *gin.RouterGroup) {
 		orders.GET("", OrderList)
 		orders.POST("", CreateOrder)
 	}
-	permits := g.Group("permits")
-	{
-		permits.GET("", PermitList)
-	}
-}
-
-func PermitList(c *gin.Context) {
-	permits := []string{
-		"dashboard:view", "patient:view", "home:view", "staff:delete", "staff:approve", "staff:edit", "staff:view", "settings:view", "security:view",
-	}
-	c.JSON(http.StatusOK, gin.H{
-		"code":    0,
-		"data":    permits,
-		"message": "success",
-	})
 }
 
 // RegisterHealthRouter is register health check api.

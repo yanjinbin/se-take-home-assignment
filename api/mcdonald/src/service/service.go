@@ -28,11 +28,12 @@ func New(c *conf.Config) *Service {
 }
 
 type OrderPool struct {
-	mu          sync.Mutex
-	idCounter   int64
-	vipQueue    *list.List
-	normalQueue *list.List
-	orderChan   chan struct{}
+	mu            sync.Mutex
+	idCounter     int64
+	vipQueue      *list.List
+	normalQueue   *list.List
+	finishedQueue *list.List
+	orderChan     chan struct{}
 }
 
 func (p *OrderPool) NextOrderID() int64 {
@@ -47,10 +48,11 @@ func (p *OrderPool) NextOrderID() int64 {
 
 func NewOrderPool(length int) *OrderPool {
 	return &OrderPool{
-		vipQueue:    list.New(),
-		normalQueue: list.New(),
-		orderChan:   make(chan struct{}, length), // 非阻塞唤醒信号
-		idCounter:   1,
+		vipQueue:      list.New(),
+		normalQueue:   list.New(),
+		finishedQueue: list.New(),
+		orderChan:     make(chan struct{}, length), // 非阻塞唤醒信号
+		idCounter:     1,
 	}
 }
 

@@ -1,10 +1,10 @@
 package router
 
 import (
-	"mcdonald/src/model"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"mcdonald/src/model"
 )
 
 // OrderList returns the list of all orders

@@ -1,6 +1,6 @@
 import request from "@/utils/http";
 
-// Bot 相关 API
+// Bot  API
 export const fetchBots = () => {
 	return request({
 		url: "/bots",
@@ -23,7 +23,7 @@ export const deleteBot = (id) => {
 	});
 };
 
-// Order 相关 API
+// Order API
 export const fetchOrders = () => {
 	return request({
 		url: "/orders",
@@ -39,7 +39,6 @@ export const createOrder = (data) => {
 	});
 };
 
-// 可选：统一导出
 const api = {
 	bots: {
 		fetch: fetchBots,

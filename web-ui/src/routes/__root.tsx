@@ -1,26 +1,34 @@
 import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { Space } from "antd";
+import { Hamburger } from "lucide-react";
+import { Bot } from "lucide-react";
 
 export const Route = createRootRoute({
 	component: () => (
 		<>
-			<div className="p-2 flex gap-2">
-				<Link to="/" className="[&.active]:font-bold">
-					Home
+			<div className="p-2 flex items-center gap-2">
+				<span className="text-2xl">🍔🍟</span>
+				<span className="font-bold text-lg text-red-600">McDonald's</span>
+			</div>
+			<div className="p-2 flex gap-16">
+				<Link
+					to="/bot"
+					className="[&.active]:font-bold flex items-center gap-1"
+				>
+					<Bot className="w-4 h-4" />
+					<span>1.bot</span>
 				</Link>
-				<Link to="/about" className="[&.active]:font-bold">
-					About
-				</Link>
-				<Link to={"/posts"} className="[&.active]:font-bold">
-					posts index
-				</Link>
-				<Link to={"/posts/detail"} className="[&.active]:font-bold">
-					posts detail
-				</Link>
-				<Link to={"/context-usage"} className="[&.active]:font-bold">
-					context-usage
+
+				<Link
+					to="/order"
+					className="[&.active]:font-bold flex items-center gap-1"
+				>
+					<Hamburger className="w-4 h-4" />
+					<span>2.order</span>
 				</Link>
 			</div>
+
 			<hr />
 			<Outlet />
 			<TanStackRouterDevtools />

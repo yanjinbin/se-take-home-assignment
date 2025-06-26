@@ -2,9 +2,12 @@ namespace=McDonald
 build_time=`date +%FT%T%z`
 commit_hash=`git rev-parse --short HEAD`
 
-run:
+run-mcdonald:
 	cd ./api/mcdonald && \
 	go run ./src/cmd/main.go  -p  8080
+
+run-mcdonald-web:
+	$(MAKE) -C web-ui run-web
 
 linter:
 	@golangci-lint run -c .golangci.yaml  --allow-parallel-runners --fix \

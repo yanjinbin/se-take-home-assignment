@@ -9,41 +9,12 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as PostsRouteImport } from './routes/posts'
 import { Route as OrderRouteImport } from './routes/order'
-import { Route as ContextUsageRouteImport } from './routes/context-usage'
 import { Route as BotRouteImport } from './routes/bot'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as AppRouteRouteImport } from './routes/app/route'
-import { Route as PathlessLayoutRouteRouteImport } from './routes/_pathlessLayout/route'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as SettingsIndexRouteImport } from './routes/settings/index'
-import { Route as PostsPostIdRouteImport } from './routes/posts.$postId'
-import { Route as AppSettingsRouteImport } from './routes/app/settings'
-import { Route as AppDashboardRouteImport } from './routes/app/dashboard'
-import { Route as PathlessLayoutBRouteImport } from './routes/_pathlessLayout/b'
-import { Route as PathlessLayoutARouteImport } from './routes/_pathlessLayout/a'
-import { Route as SettingsProfileIndexRouteImport } from './routes/settings/profile/index'
-import { Route as SettingsAboutIndexRouteImport } from './routes/settings/about/index'
-import { Route as PostsPostIdEditRouteImport } from './routes/posts_.$postId.edit'
-import { Route as AppUsersUserIdRouteRouteImport } from './routes/app/users/$userId/route'
-import { Route as PostsPostIdPostPathlessLayoutIndexRouteImport } from './routes/posts/$postId/_postPathlessLayout/index'
-import { Route as AppUsersUserIdIndexRouteImport } from './routes/app/users/$userId/index'
-import { Route as AppUsersUserIdEditRouteImport } from './routes/app/users/$userId/edit'
 
-const PostsRoute = PostsRouteImport.update({
-  id: '/posts',
-  path: '/posts',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const OrderRoute = OrderRouteImport.update({
   id: '/order',
   path: '/order',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContextUsageRoute = ContextUsageRouteImport.update({
-  id: '/context-usage',
-  path: '/context-usage',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BotRoute = BotRouteImport.update({
@@ -51,262 +22,40 @@ const BotRoute = BotRouteImport.update({
   path: '/bot',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppRouteRoute = AppRouteRouteImport.update({
-  id: '/app',
-  path: '/app',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PathlessLayoutRouteRoute = PathlessLayoutRouteRouteImport.update({
-  id: '/_pathlessLayout',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SettingsIndexRoute = SettingsIndexRouteImport.update({
-  id: '/settings/',
-  path: '/settings/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PostsPostIdRoute = PostsPostIdRouteImport.update({
-  id: '/$postId',
-  path: '/$postId',
-  getParentRoute: () => PostsRoute,
-} as any)
-const AppSettingsRoute = AppSettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => AppRouteRoute,
-} as any)
-const AppDashboardRoute = AppDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => AppRouteRoute,
-} as any)
-const PathlessLayoutBRoute = PathlessLayoutBRouteImport.update({
-  id: '/b',
-  path: '/b',
-  getParentRoute: () => PathlessLayoutRouteRoute,
-} as any)
-const PathlessLayoutARoute = PathlessLayoutARouteImport.update({
-  id: '/a',
-  path: '/a',
-  getParentRoute: () => PathlessLayoutRouteRoute,
-} as any)
-const SettingsProfileIndexRoute = SettingsProfileIndexRouteImport.update({
-  id: '/settings/profile/',
-  path: '/settings/profile/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SettingsAboutIndexRoute = SettingsAboutIndexRouteImport.update({
-  id: '/settings/about/',
-  path: '/settings/about/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PostsPostIdEditRoute = PostsPostIdEditRouteImport.update({
-  id: '/posts_/$postId/edit',
-  path: '/posts/$postId/edit',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppUsersUserIdRouteRoute = AppUsersUserIdRouteRouteImport.update({
-  id: '/users/$userId',
-  path: '/users/$userId',
-  getParentRoute: () => AppRouteRoute,
-} as any)
-const PostsPostIdPostPathlessLayoutIndexRoute =
-  PostsPostIdPostPathlessLayoutIndexRouteImport.update({
-    id: '/_postPathlessLayout/',
-    path: '/',
-    getParentRoute: () => PostsPostIdRoute,
-  } as any)
-const AppUsersUserIdIndexRoute = AppUsersUserIdIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AppUsersUserIdRouteRoute,
-} as any)
-const AppUsersUserIdEditRoute = AppUsersUserIdEditRouteImport.update({
-  id: '/edit',
-  path: '/edit',
-  getParentRoute: () => AppUsersUserIdRouteRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/app': typeof AppRouteRouteWithChildren
-  '/about': typeof AboutRoute
   '/bot': typeof BotRoute
-  '/context-usage': typeof ContextUsageRoute
   '/order': typeof OrderRoute
-  '/posts': typeof PostsRouteWithChildren
-  '/a': typeof PathlessLayoutARoute
-  '/b': typeof PathlessLayoutBRoute
-  '/app/dashboard': typeof AppDashboardRoute
-  '/app/settings': typeof AppSettingsRoute
-  '/posts/$postId': typeof PostsPostIdRouteWithChildren
-  '/settings': typeof SettingsIndexRoute
-  '/app/users/$userId': typeof AppUsersUserIdRouteRouteWithChildren
-  '/posts/$postId/edit': typeof PostsPostIdEditRoute
-  '/settings/about': typeof SettingsAboutIndexRoute
-  '/settings/profile': typeof SettingsProfileIndexRoute
-  '/app/users/$userId/edit': typeof AppUsersUserIdEditRoute
-  '/app/users/$userId/': typeof AppUsersUserIdIndexRoute
-  '/posts/$postId/': typeof PostsPostIdPostPathlessLayoutIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/app': typeof AppRouteRouteWithChildren
-  '/about': typeof AboutRoute
   '/bot': typeof BotRoute
-  '/context-usage': typeof ContextUsageRoute
   '/order': typeof OrderRoute
-  '/posts': typeof PostsRouteWithChildren
-  '/a': typeof PathlessLayoutARoute
-  '/b': typeof PathlessLayoutBRoute
-  '/app/dashboard': typeof AppDashboardRoute
-  '/app/settings': typeof AppSettingsRoute
-  '/settings': typeof SettingsIndexRoute
-  '/posts/$postId/edit': typeof PostsPostIdEditRoute
-  '/settings/about': typeof SettingsAboutIndexRoute
-  '/settings/profile': typeof SettingsProfileIndexRoute
-  '/app/users/$userId/edit': typeof AppUsersUserIdEditRoute
-  '/app/users/$userId': typeof AppUsersUserIdIndexRoute
-  '/posts/$postId': typeof PostsPostIdPostPathlessLayoutIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/_pathlessLayout': typeof PathlessLayoutRouteRouteWithChildren
-  '/app': typeof AppRouteRouteWithChildren
-  '/about': typeof AboutRoute
   '/bot': typeof BotRoute
-  '/context-usage': typeof ContextUsageRoute
   '/order': typeof OrderRoute
-  '/posts': typeof PostsRouteWithChildren
-  '/_pathlessLayout/a': typeof PathlessLayoutARoute
-  '/_pathlessLayout/b': typeof PathlessLayoutBRoute
-  '/app/dashboard': typeof AppDashboardRoute
-  '/app/settings': typeof AppSettingsRoute
-  '/posts/$postId': typeof PostsPostIdRouteWithChildren
-  '/settings/': typeof SettingsIndexRoute
-  '/app/users/$userId': typeof AppUsersUserIdRouteRouteWithChildren
-  '/posts_/$postId/edit': typeof PostsPostIdEditRoute
-  '/settings/about/': typeof SettingsAboutIndexRoute
-  '/settings/profile/': typeof SettingsProfileIndexRoute
-  '/app/users/$userId/edit': typeof AppUsersUserIdEditRoute
-  '/app/users/$userId/': typeof AppUsersUserIdIndexRoute
-  '/posts/$postId/_postPathlessLayout/': typeof PostsPostIdPostPathlessLayoutIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/app'
-    | '/about'
-    | '/bot'
-    | '/context-usage'
-    | '/order'
-    | '/posts'
-    | '/a'
-    | '/b'
-    | '/app/dashboard'
-    | '/app/settings'
-    | '/posts/$postId'
-    | '/settings'
-    | '/app/users/$userId'
-    | '/posts/$postId/edit'
-    | '/settings/about'
-    | '/settings/profile'
-    | '/app/users/$userId/edit'
-    | '/app/users/$userId/'
-    | '/posts/$postId/'
+  fullPaths: '/bot' | '/order'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/app'
-    | '/about'
-    | '/bot'
-    | '/context-usage'
-    | '/order'
-    | '/posts'
-    | '/a'
-    | '/b'
-    | '/app/dashboard'
-    | '/app/settings'
-    | '/settings'
-    | '/posts/$postId/edit'
-    | '/settings/about'
-    | '/settings/profile'
-    | '/app/users/$userId/edit'
-    | '/app/users/$userId'
-    | '/posts/$postId'
-  id:
-    | '__root__'
-    | '/'
-    | '/_pathlessLayout'
-    | '/app'
-    | '/about'
-    | '/bot'
-    | '/context-usage'
-    | '/order'
-    | '/posts'
-    | '/_pathlessLayout/a'
-    | '/_pathlessLayout/b'
-    | '/app/dashboard'
-    | '/app/settings'
-    | '/posts/$postId'
-    | '/settings/'
-    | '/app/users/$userId'
-    | '/posts_/$postId/edit'
-    | '/settings/about/'
-    | '/settings/profile/'
-    | '/app/users/$userId/edit'
-    | '/app/users/$userId/'
-    | '/posts/$postId/_postPathlessLayout/'
+  to: '/bot' | '/order'
+  id: '__root__' | '/bot' | '/order'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  PathlessLayoutRouteRoute: typeof PathlessLayoutRouteRouteWithChildren
-  AppRouteRoute: typeof AppRouteRouteWithChildren
-  AboutRoute: typeof AboutRoute
   BotRoute: typeof BotRoute
-  ContextUsageRoute: typeof ContextUsageRoute
   OrderRoute: typeof OrderRoute
-  PostsRoute: typeof PostsRouteWithChildren
-  SettingsIndexRoute: typeof SettingsIndexRoute
-  PostsPostIdEditRoute: typeof PostsPostIdEditRoute
-  SettingsAboutIndexRoute: typeof SettingsAboutIndexRoute
-  SettingsProfileIndexRoute: typeof SettingsProfileIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/posts': {
-      id: '/posts'
-      path: '/posts'
-      fullPath: '/posts'
-      preLoaderRoute: typeof PostsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/order': {
       id: '/order'
       path: '/order'
       fullPath: '/order'
       preLoaderRoute: typeof OrderRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/context-usage': {
-      id: '/context-usage'
-      path: '/context-usage'
-      fullPath: '/context-usage'
-      preLoaderRoute: typeof ContextUsageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bot': {
@@ -316,206 +65,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BotRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app': {
-      id: '/app'
-      path: '/app'
-      fullPath: '/app'
-      preLoaderRoute: typeof AppRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_pathlessLayout': {
-      id: '/_pathlessLayout'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof PathlessLayoutRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/settings/': {
-      id: '/settings/'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof SettingsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/posts/$postId': {
-      id: '/posts/$postId'
-      path: '/$postId'
-      fullPath: '/posts/$postId'
-      preLoaderRoute: typeof PostsPostIdRouteImport
-      parentRoute: typeof PostsRoute
-    }
-    '/app/settings': {
-      id: '/app/settings'
-      path: '/settings'
-      fullPath: '/app/settings'
-      preLoaderRoute: typeof AppSettingsRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/app/dashboard': {
-      id: '/app/dashboard'
-      path: '/dashboard'
-      fullPath: '/app/dashboard'
-      preLoaderRoute: typeof AppDashboardRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/_pathlessLayout/b': {
-      id: '/_pathlessLayout/b'
-      path: '/b'
-      fullPath: '/b'
-      preLoaderRoute: typeof PathlessLayoutBRouteImport
-      parentRoute: typeof PathlessLayoutRouteRoute
-    }
-    '/_pathlessLayout/a': {
-      id: '/_pathlessLayout/a'
-      path: '/a'
-      fullPath: '/a'
-      preLoaderRoute: typeof PathlessLayoutARouteImport
-      parentRoute: typeof PathlessLayoutRouteRoute
-    }
-    '/settings/profile/': {
-      id: '/settings/profile/'
-      path: '/settings/profile'
-      fullPath: '/settings/profile'
-      preLoaderRoute: typeof SettingsProfileIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/settings/about/': {
-      id: '/settings/about/'
-      path: '/settings/about'
-      fullPath: '/settings/about'
-      preLoaderRoute: typeof SettingsAboutIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/posts_/$postId/edit': {
-      id: '/posts_/$postId/edit'
-      path: '/posts/$postId/edit'
-      fullPath: '/posts/$postId/edit'
-      preLoaderRoute: typeof PostsPostIdEditRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app/users/$userId': {
-      id: '/app/users/$userId'
-      path: '/users/$userId'
-      fullPath: '/app/users/$userId'
-      preLoaderRoute: typeof AppUsersUserIdRouteRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/posts/$postId/_postPathlessLayout/': {
-      id: '/posts/$postId/_postPathlessLayout/'
-      path: '/'
-      fullPath: '/posts/$postId/'
-      preLoaderRoute: typeof PostsPostIdPostPathlessLayoutIndexRouteImport
-      parentRoute: typeof PostsPostIdRoute
-    }
-    '/app/users/$userId/': {
-      id: '/app/users/$userId/'
-      path: '/'
-      fullPath: '/app/users/$userId/'
-      preLoaderRoute: typeof AppUsersUserIdIndexRouteImport
-      parentRoute: typeof AppUsersUserIdRouteRoute
-    }
-    '/app/users/$userId/edit': {
-      id: '/app/users/$userId/edit'
-      path: '/edit'
-      fullPath: '/app/users/$userId/edit'
-      preLoaderRoute: typeof AppUsersUserIdEditRouteImport
-      parentRoute: typeof AppUsersUserIdRouteRoute
-    }
   }
 }
 
-interface PathlessLayoutRouteRouteChildren {
-  PathlessLayoutARoute: typeof PathlessLayoutARoute
-  PathlessLayoutBRoute: typeof PathlessLayoutBRoute
-}
-
-const PathlessLayoutRouteRouteChildren: PathlessLayoutRouteRouteChildren = {
-  PathlessLayoutARoute: PathlessLayoutARoute,
-  PathlessLayoutBRoute: PathlessLayoutBRoute,
-}
-
-const PathlessLayoutRouteRouteWithChildren =
-  PathlessLayoutRouteRoute._addFileChildren(PathlessLayoutRouteRouteChildren)
-
-interface AppUsersUserIdRouteRouteChildren {
-  AppUsersUserIdEditRoute: typeof AppUsersUserIdEditRoute
-  AppUsersUserIdIndexRoute: typeof AppUsersUserIdIndexRoute
-}
-
-const AppUsersUserIdRouteRouteChildren: AppUsersUserIdRouteRouteChildren = {
-  AppUsersUserIdEditRoute: AppUsersUserIdEditRoute,
-  AppUsersUserIdIndexRoute: AppUsersUserIdIndexRoute,
-}
-
-const AppUsersUserIdRouteRouteWithChildren =
-  AppUsersUserIdRouteRoute._addFileChildren(AppUsersUserIdRouteRouteChildren)
-
-interface AppRouteRouteChildren {
-  AppDashboardRoute: typeof AppDashboardRoute
-  AppSettingsRoute: typeof AppSettingsRoute
-  AppUsersUserIdRouteRoute: typeof AppUsersUserIdRouteRouteWithChildren
-}
-
-const AppRouteRouteChildren: AppRouteRouteChildren = {
-  AppDashboardRoute: AppDashboardRoute,
-  AppSettingsRoute: AppSettingsRoute,
-  AppUsersUserIdRouteRoute: AppUsersUserIdRouteRouteWithChildren,
-}
-
-const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
-  AppRouteRouteChildren,
-)
-
-interface PostsPostIdRouteChildren {
-  PostsPostIdPostPathlessLayoutIndexRoute: typeof PostsPostIdPostPathlessLayoutIndexRoute
-}
-
-const PostsPostIdRouteChildren: PostsPostIdRouteChildren = {
-  PostsPostIdPostPathlessLayoutIndexRoute:
-    PostsPostIdPostPathlessLayoutIndexRoute,
-}
-
-const PostsPostIdRouteWithChildren = PostsPostIdRoute._addFileChildren(
-  PostsPostIdRouteChildren,
-)
-
-interface PostsRouteChildren {
-  PostsPostIdRoute: typeof PostsPostIdRouteWithChildren
-}
-
-const PostsRouteChildren: PostsRouteChildren = {
-  PostsPostIdRoute: PostsPostIdRouteWithChildren,
-}
-
-const PostsRouteWithChildren = PostsRoute._addFileChildren(PostsRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  PathlessLayoutRouteRoute: PathlessLayoutRouteRouteWithChildren,
-  AppRouteRoute: AppRouteRouteWithChildren,
-  AboutRoute: AboutRoute,
   BotRoute: BotRoute,
-  ContextUsageRoute: ContextUsageRoute,
   OrderRoute: OrderRoute,
-  PostsRoute: PostsRouteWithChildren,
-  SettingsIndexRoute: SettingsIndexRoute,
-  PostsPostIdEditRoute: PostsPostIdEditRoute,
-  SettingsAboutIndexRoute: SettingsAboutIndexRoute,
-  SettingsProfileIndexRoute: SettingsProfileIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+
 	"mcdonald/src/model"
 )
 
@@ -62,5 +63,9 @@ func (s *Service) OrdersList(c context.Context) []*model.Order {
 	for e := s.pool.normalQueue.Front(); e != nil; e = e.Next() {
 		orders = append(orders, e.Value.(*model.Order))
 	}
+	for e := s.pool.finishedQueue.Front(); e != nil; e = e.Next() {
+		orders = append(orders, e.Value.(*model.Order))
+	}
+
 	return orders
 }

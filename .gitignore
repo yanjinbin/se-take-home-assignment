@@ -3,6 +3,7 @@
 docker
 **/**/.DS_Store
 .venv
+**/**/.idea
 bin
 build
 **/**/node_modules

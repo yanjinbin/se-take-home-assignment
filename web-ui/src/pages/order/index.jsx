@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 const { Option } = Select;
 
-// 枚举映射
 const ORDER_TYPE_MAP = {
 	1: "VIP",
 	2: "NORMAL",
@@ -31,7 +30,7 @@ export default function OrderPage() {
 			setLoading(false);
 		}
 	};
-
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		loadOrders();
 	}, []);
@@ -40,7 +39,7 @@ export default function OrderPage() {
 		const values = await form.validateFields();
 		console.log("提交的订单类型:", values.order_type);
 		await createOrder(values);
-		message.success("订单创建成功");
+		message.success("order created successfully");
 		setOpen(false);
 		loadOrders();
 	};
@@ -66,13 +65,15 @@ export default function OrderPage() {
 
 	return (
 		<>
-			<Button
-				type="primary"
-				onClick={() => setOpen(true)}
-				style={{ marginBottom: 16 }}
-			>
-				add order
-			</Button>
+			<div className="flex justify-center ">
+				<Button
+					type="primary"
+					onClick={() => setOpen(true)}
+					style={{ marginBottom: 16 }}
+				>
+					add order
+				</Button>
+			</div>
 			<Table
 				rowKey="id"
 				dataSource={orders}
@@ -82,7 +83,7 @@ export default function OrderPage() {
 
 			<Modal
 				open={open}
-				title="createOrder"
+				title="add order"
 				onCancel={() => setOpen(false)}
 				onOk={handleAdd}
 			>

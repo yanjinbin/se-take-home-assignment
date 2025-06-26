@@ -40,34 +40,34 @@ export default function BotPage() {
 	const handleAdd = async () => {
 		const values = await form.validateFields();
 		await addBot(values);
-		message.success("添加成功");
+		message.success("add successfully");
 		setOpen(false);
 		loadBots();
 	};
 
 	const handleDelete = async (id) => {
 		await deleteBot(id);
-		message.success("删除成功");
+		message.success("delete bot successfully");
 		loadBots();
 	};
 
 	const columns = [
 		{ title: "ID", dataIndex: "id" },
-		{ title: "名称", dataIndex: "name" },
+		{ title: "name", dataIndex: "name" },
 		{
-			title: "状态",
+			title: "status",
 			dataIndex: "status",
 			render: (v) => BOT_STATUS_MAP[v] || `未知状态(${v})`,
 		},
 		{
-			title: "操作",
+			title: "operations",
 			render: (_, record) => (
 				<Popconfirm
-					title="确认删除？"
+					title="confirm delete？"
 					onConfirm={() => handleDelete(record.id)}
 				>
 					<Button danger size="small">
-						删除
+						delete
 					</Button>
 				</Popconfirm>
 			),
@@ -76,13 +76,22 @@ export default function BotPage() {
 
 	return (
 		<>
-			<Button
-				type="primary"
-				onClick={() => setOpen(true)}
-				style={{ marginBottom: 16 }}
-			>
-				添加 Bot
-			</Button>
+			<div className="flex justify-center mb-4">
+				<Button
+					type="primary"
+					onClick={() => {
+						form.setFieldsValue({
+							name: "",
+							handle_time: 10,
+						});
+						setOpen(true);
+					}}
+					style={{ marginBottom: 16 }}
+				>
+					add bot
+				</Button>
+			</div>
+
 			<Table
 				rowKey="id"
 				dataSource={bots}
@@ -92,16 +101,16 @@ export default function BotPage() {
 
 			<Modal
 				open={open}
-				title="添加 Bot"
+				title="add Bot"
 				onCancel={() => setOpen(false)}
 				onOk={handleAdd}
 			>
 				<Form form={form} layout="vertical">
-					<Form.Item label="名称" name="name" rules={[{ required: true }]}>
+					<Form.Item label="name" name="name" rules={[{ required: true }]}>
 						<Input />
 					</Form.Item>
 					<Form.Item
-						label="处理时间（秒）"
+						label="hadnle_time（ seconds ）"
 						name="handle_time"
 						rules={[{ required: true }]}
 					>

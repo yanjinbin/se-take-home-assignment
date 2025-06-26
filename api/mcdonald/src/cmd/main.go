@@ -12,10 +12,9 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/gin-gonic/gin"
 	"mcdonald/src/conf"
 	"mcdonald/src/router"
-
-	"github.com/gin-gonic/gin"
 )
 
 const (
