@@ -13,7 +13,7 @@ format-json:
 	json-sort src/**/*.json --insert-final-newline true --autofix
 
 run-web:
-	pnpm run dev
+	pnpm install && pnpm run dev
 
 .PHONY: docker-run
 runAtDocker:

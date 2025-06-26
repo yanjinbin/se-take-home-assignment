@@ -4,6 +4,7 @@ commit_hash=`git rev-parse --short HEAD`
 
 run-mcdonald:
 	cd ./api/mcdonald && \
+	go mod tidy && \
 	go run ./src/cmd/main.go  -p  8080
 
 run-mcdonald-web:

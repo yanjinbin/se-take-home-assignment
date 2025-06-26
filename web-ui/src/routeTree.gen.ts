@@ -8,70 +8,127 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as OrderRouteImport } from './routes/order'
-import { Route as BotRouteImport } from './routes/bot'
+// Import Routes
 
-const OrderRoute = OrderRouteImport.update({
+import { Route as rootRoute } from './routes/__root'
+import { Route as OrderImport } from './routes/order'
+import { Route as BotImport } from './routes/bot'
+import { Route as IndexImport } from './routes/index'
+
+// Create/Update Routes
+
+const OrderRoute = OrderImport.update({
   id: '/order',
   path: '/order',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BotRoute = BotRouteImport.update({
-  id: '/bot',
-  path: '/bot',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => rootRoute,
 } as any)
 
-export interface FileRoutesByFullPath {
-  '/bot': typeof BotRoute
-  '/order': typeof OrderRoute
-}
-export interface FileRoutesByTo {
-  '/bot': typeof BotRoute
-  '/order': typeof OrderRoute
-}
-export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/bot': typeof BotRoute
-  '/order': typeof OrderRoute
-}
-export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/bot' | '/order'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/bot' | '/order'
-  id: '__root__' | '/bot' | '/order'
-  fileRoutesById: FileRoutesById
-}
-export interface RootRouteChildren {
-  BotRoute: typeof BotRoute
-  OrderRoute: typeof OrderRoute
-}
+const BotRoute = BotImport.update({
+  id: '/bot',
+  path: '/bot',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const IndexRoute = IndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+// Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/order': {
-      id: '/order'
-      path: '/order'
-      fullPath: '/order'
-      preLoaderRoute: typeof OrderRouteImport
-      parentRoute: typeof rootRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
     }
     '/bot': {
       id: '/bot'
       path: '/bot'
       fullPath: '/bot'
-      preLoaderRoute: typeof BotRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof BotImport
+      parentRoute: typeof rootRoute
+    }
+    '/order': {
+      id: '/order'
+      path: '/order'
+      fullPath: '/order'
+      preLoaderRoute: typeof OrderImport
+      parentRoute: typeof rootRoute
     }
   }
 }
 
+// Create and export the route tree
+
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/bot': typeof BotRoute
+  '/order': typeof OrderRoute
+}
+
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/bot': typeof BotRoute
+  '/order': typeof OrderRoute
+}
+
+export interface FileRoutesById {
+  __root__: typeof rootRoute
+  '/': typeof IndexRoute
+  '/bot': typeof BotRoute
+  '/order': typeof OrderRoute
+}
+
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/bot' | '/order'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/bot' | '/order'
+  id: '__root__' | '/' | '/bot' | '/order'
+  fileRoutesById: FileRoutesById
+}
+
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  BotRoute: typeof BotRoute
+  OrderRoute: typeof OrderRoute
+}
+
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   BotRoute: BotRoute,
   OrderRoute: OrderRoute,
 }
-export const routeTree = rootRouteImport
+
+export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+/* ROUTE_MANIFEST_START
+{
+  "routes": {
+    "__root__": {
+      "filePath": "__root.tsx",
+      "children": [
+        "/",
+        "/bot",
+        "/order"
+      ]
+    },
+    "/": {
+      "filePath": "index.jsx"
+    },
+    "/bot": {
+      "filePath": "bot.jsx"
+    },
+    "/order": {
+      "filePath": "order.jsx"
+    }
+  }
+}
+ROUTE_MANIFEST_END */
