@@ -1,0 +1,48 @@
+repos:
+  # build in prod
+  - repo: local
+    hooks:
+      - id: golangci-lint
+        name: "golangci-lint fmt and linter"
+        entry: make linter # 或者直接 'vite build' 如果已经全局安装了 vite
+        language: system # 使用系统环境来执行命令
+        types: [] # 这里可以为空，表示对所有文件都有效
+      - id: semver-check-tags
+        name: Check Git Tags for SemVer Compliance
+        entry: check-semver.sh
+        language: script
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]
+        args: ["-gv"]
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.16.0
+    hooks:
+      - id: yamlfmt
+        name: yamlfmt
+        description: This hook uses github.com/google/yamlfmt to format yaml files. Requires Go >1.18 to be installed.
+        entry: yamlfmt
+        language: golang
+        types: [yaml]
+        args: ["-dstar", "**/{config,conf,workflows}/**/*.y{a,}ml"]
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v4.0.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+        args:
+          - --verbose
+          - --strict
+          - comment
+          - hotfix
+          - build
+          - chore
+          - ci
+          - docs
+          - feat
+          - fix
+          - perf
+          - refactor
+          - revert
+          - style
+          - test

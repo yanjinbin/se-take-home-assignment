@@ -1,0 +1,9 @@
+.idea
+.vscode
+docker
+**/**/.DS_Store
+.venv
+bin
+build
+**/**/node_modules
+docs
