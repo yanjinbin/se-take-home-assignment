@@ -8,34 +8,65 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as OrderRouteImport } from './routes/order'
-import { Route as BotRouteImport } from './routes/bot'
+// Import Routes
 
-const OrderRoute = OrderRouteImport.update({
+import { Route as rootRoute } from './routes/__root'
+import { Route as OrderImport } from './routes/order'
+import { Route as BotImport } from './routes/bot'
+
+// Create/Update Routes
+
+const OrderRoute = OrderImport.update({
   id: '/order',
   path: '/order',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => rootRoute,
 } as any)
-const BotRoute = BotRouteImport.update({
+
+const BotRoute = BotImport.update({
   id: '/bot',
   path: '/bot',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => rootRoute,
 } as any)
+
+// Populate the FileRoutesByPath interface
+
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/bot': {
+      id: '/bot'
+      path: '/bot'
+      fullPath: '/bot'
+      preLoaderRoute: typeof BotImport
+      parentRoute: typeof rootRoute
+    }
+    '/order': {
+      id: '/order'
+      path: '/order'
+      fullPath: '/order'
+      preLoaderRoute: typeof OrderImport
+      parentRoute: typeof rootRoute
+    }
+  }
+}
+
+// Create and export the route tree
 
 export interface FileRoutesByFullPath {
   '/bot': typeof BotRoute
   '/order': typeof OrderRoute
 }
+
 export interface FileRoutesByTo {
   '/bot': typeof BotRoute
   '/order': typeof OrderRoute
 }
+
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
+  __root__: typeof rootRoute
   '/bot': typeof BotRoute
   '/order': typeof OrderRoute
 }
+
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths: '/bot' | '/order'
@@ -44,34 +75,37 @@ export interface FileRouteTypes {
   id: '__root__' | '/bot' | '/order'
   fileRoutesById: FileRoutesById
 }
+
 export interface RootRouteChildren {
   BotRoute: typeof BotRoute
   OrderRoute: typeof OrderRoute
-}
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/order': {
-      id: '/order'
-      path: '/order'
-      fullPath: '/order'
-      preLoaderRoute: typeof OrderRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/bot': {
-      id: '/bot'
-      path: '/bot'
-      fullPath: '/bot'
-      preLoaderRoute: typeof BotRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-  }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   BotRoute: BotRoute,
   OrderRoute: OrderRoute,
 }
-export const routeTree = rootRouteImport
+
+export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+/* ROUTE_MANIFEST_START
+{
+  "routes": {
+    "__root__": {
+      "filePath": "__root.tsx",
+      "children": [
+        "/bot",
+        "/order"
+      ]
+    },
+    "/bot": {
+      "filePath": "bot.jsx"
+    },
+    "/order": {
+      "filePath": "order.jsx"
+    }
+  }
+}
+ROUTE_MANIFEST_END */
